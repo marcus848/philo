@@ -1,0 +1,11 @@
+# Objs e binários
+bin/
+obj/
+
+# Arquivos temporários
+*.o
+*.swp
+*.tmp
+
+# Logs
+*.log
