@@ -35,7 +35,7 @@ void	*inspector(void *arg)
 	t_table	*t;
 
 	t = (t_table *) arg;
-	if(t->times_must_eat <= 0)
+	if (t->times_must_eat <= 0)
 		return (NULL);
 	while (1)
 	{
@@ -46,7 +46,6 @@ void	*inspector(void *arg)
 			break ;
 		}
 		pthread_mutex_unlock(&t->table_lock);
-
 		if (all_full(t))
 		{
 			pthread_mutex_lock(&t->table_lock);

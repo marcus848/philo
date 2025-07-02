@@ -20,47 +20,45 @@
 # include <sys/time.h>
 
 // Structs
-typedef struct s_table t_table;
+typedef struct s_table	t_table;
 
 typedef struct s_philosopher
 {
-	int		id;
-	int		meals_eaten;
-	pthread_t	thread_id;
+	int				id;
+	int				meals_eaten;
+	pthread_t		thread_id;
 	pthread_mutex_t	*left_fork;
 	pthread_mutex_t	*right_fork;
 	pthread_mutex_t	meal_lock;
 	unsigned long	last_meal_time;
-	t_table	*table;
+	t_table			*table;
 }	t_philo;
 
-typedef struct	s_table
+typedef struct s_table
 {
-	int		n_philos;
-	long		time_to_die;
-	long		time_to_eat;
-	long		time_to_sleep;
-	int		times_must_eat;
-	int		is_ended;
+	int				n_philos;
+	int				times_must_eat;
+	int				is_ended;
+	long			time_to_die;
+	long			time_to_eat;
+	long			time_to_sleep;
 	unsigned long	start_time;
 	pthread_mutex_t	*forks;
-	t_philo		*philos;
+	t_philo			*philos;
 	pthread_mutex_t	write_lock;
 	pthread_mutex_t	table_lock;
 }	t_table;
 
 t_table	*init_table(int ac, char **av);
 
-
 // lib
-int     	ft_atoi(const char *nptr);
-int     ft_atol(const char *nptr);
-int	ft_strcmp(char *s1, char *s2);
+int		ft_atoi(const char *nptr);
+int		ft_atol(const char *nptr);
+int		ft_strcmp(char *s1, char *s2);
 
 // utils
 long	get_time_in_ms(void);
 void	ft_usleep(long time_in_ms);
-
 
 // free
 void	free_table(t_table *t);
@@ -78,6 +76,6 @@ void	*monitor(void *arg);
 void	*inspector(void *arg);
 
 // threads
-int	start_threads(t_table *t);
+int		start_threads(t_table *t);
 
 #endif

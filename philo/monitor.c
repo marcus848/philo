@@ -6,7 +6,7 @@
 /*   By: marcudos <marcudos@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 19:36:51 by marcudos          #+#    #+#             */
-/*   Updated: 2025/07/01 20:10:39 by marcudos         ###   ########.fr       */
+/*   Updated: 2025/07/01 20:41:43 by marcudos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,15 @@ void	*monitor(void *arg)
 	int		i;
 
 	t = (t_table *) arg;
-	while (!t->is_ended)
+	while (1)
 	{
+		pthread_mutex_lock(&t->table_lock);
+		if (t->is_ended)
+		{
+			pthread_mutex_unlock(&t->table_lock);
+			break ;
+		}
+		pthread_mutex_unlock(&t->table_lock);
 		i = 0;
 		while (i < t->n_philos && !t->is_ended)
 		{

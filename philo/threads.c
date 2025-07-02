@@ -11,8 +11,6 @@
 /* ************************************************************************** */
 
 #include "philo.h"
-#include <bits/pthreadtypes.h>
-#include <pthread.h>
 
 int	create_philo_threads(t_table *t)
 {
@@ -22,8 +20,8 @@ int	create_philo_threads(t_table *t)
 	while (i < t->n_philos)
 	{
 		if (pthread_create(&t->philos[i].thread_id,
-			NULL, &routine, &t->philos[i]) != 0)
-			return(1);
+				NULL, &routine, &t->philos[i]) != 0)
+			return (1);
 		i++;
 	}
 	return (0);
