@@ -6,7 +6,7 @@
 /*   By: marcudos <marcudos@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 18:04:18 by marcudos          #+#    #+#             */
-/*   Updated: 2025/07/01 20:17:31 by marcudos         ###   ########.fr       */
+/*   Updated: 2025/07/03 16:09:26 by marcudos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ typedef struct s_philosopher
 {
 	int		id;
 	int		meals_eaten;
-	pid_t		pid;
 	pthread_t	monitor_thread;
 	unsigned long	last_meal_time;
 	t_table	*table;
@@ -39,6 +38,7 @@ typedef struct s_philosopher
 
 typedef struct	s_table
 {
+	pid_t		*pid;
 	int		n_philos;
 	long		time_to_die;
 	long		time_to_eat;

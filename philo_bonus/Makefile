@@ -1,5 +1,5 @@
 # File name
-NAME = philo
+NAME = philo_bonus
 
 # Compiler and flags
 CC = cc

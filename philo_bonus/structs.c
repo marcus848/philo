@@ -6,11 +6,13 @@
 /*   By: marcudos <marcudos@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 18:23:11 by marcudos          #+#    #+#             */
-/*   Updated: 2025/07/01 20:10:06 by marcudos         ###   ########.fr       */
+/*   Updated: 2025/07/03 16:10:46 by marcudos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+#include <stdlib.h>
+#include <sys/types.h>
 
 void	set_args(t_table *t, int ac, char **av)
 {
@@ -41,6 +43,9 @@ int	alloc_table(t_table *t)
 	t->philos = malloc(sizeof(t_philo) * t->n_philos);
 	if (!t->philos)
 		return (1);
+	t->pid = (pid_t *) malloc(sizeof(pid_t) * t->n_philos);
+	if (!t->philos)
+		return (1);
 	return (0);
 }
 
@@ -52,7 +57,7 @@ int	init_philos(t_table *t)
 	while (i < t->n_philos)
 	{
 		t->philos[i].id = i + 1;
-		t->philos[i].meals_eaten = 0;
+		t->philos[i].meals_eaten = t->times_must_eat;
 		t->philos[i].last_meal_time = t->start_time;
 		t->philos[i].table = t;
 		i++;
