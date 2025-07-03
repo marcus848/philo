@@ -6,7 +6,7 @@
 /*   By: marcudos <marcudos@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 18:19:49 by marcudos          #+#    #+#             */
-/*   Updated: 2025/07/01 19:48:43 by marcudos         ###   ########.fr       */
+/*   Updated: 2025/07/03 17:50:36 by marcudos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,11 @@ int	main(int ac, char **av)
 	table = init_table(ac, av);
 	if (!table)
 		return (1);
-	if (start_forks(table))
+	if (start_forks(table) != 0)
+	{
+		free_table(table);
 		return (1);
-	while (1)
-		usleep(1000);
+	}
+	free_table(table);
 	return (0);
 }
