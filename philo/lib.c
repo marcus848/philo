@@ -36,30 +36,6 @@ int	ft_atoi(const char *nptr)
 	return (nbr * sign);
 }
 
-int	ft_atol(const char *nptr)
-{
-	int		sign;
-	long	nbr;
-
-	sign = 1;
-	nbr = 0;
-	while ((*nptr >= 9 && *nptr <= 13) || *nptr == 32)
-		nptr++;
-	if (*nptr == '-')
-	{
-		nptr++;
-		sign *= -1;
-	}
-	else if (*nptr == '+')
-		nptr++;
-	while (*nptr >= '0' && *nptr <= '9')
-	{
-		nbr = nbr * 10 + *nptr - '0';
-		nptr++;
-	}
-	return (nbr * sign);
-}
-
 int	ft_strcmp(char *s1, char *s2)
 {
 	while (*s1 && *s2 && *s1 == *s2)

@@ -53,18 +53,19 @@ t_table	*init_table(int ac, char **av);
 
 // lib
 int		ft_atoi(const char *nptr);
-int		ft_atol(const char *nptr);
 int		ft_strcmp(char *s1, char *s2);
 
 // utils
 long	get_time_in_ms(void);
 void	ft_usleep(long time_in_ms);
+int		check_input(char **av);
 
 // free
 void	free_table(t_table *t);
 
 // actions_utils
 void	print_action(t_philo *philo, char *msg);
+int		single_philo(t_table *t);
 
 // actions
 void	*routine(void *arg);

@@ -21,6 +21,11 @@ int	main(int ac, char **av)
 		printf("Use: %s <n_filos> <die> <eat> <sleep> [must_eat]\n", av[0]);
 		return (1);
 	}
+	if (!check_input(av))
+	{
+		printf("Just positive numbers accept\n");
+		return (1);
+	}
 	table = init_table(ac, av);
 	if (!table)
 		return (1);

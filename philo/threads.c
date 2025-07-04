@@ -58,6 +58,12 @@ int	start_threads(t_table *t)
 	pthread_t	insp;
 
 	t->start_time = get_time_in_ms();
+	if (t->n_philos == 1)
+	{
+		if (single_philo(t))
+			return (1);
+		return (0);
+	}
 	if (create_philo_threads(t))
 		return (1);
 	if (start_monitors(t, &mon, &insp))

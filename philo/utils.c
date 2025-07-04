@@ -28,3 +28,35 @@ void	ft_usleep(long time_in_ms)
 	while ((get_time_in_ms() - start) < (unsigned long) time_in_ms)
 		usleep(500);
 }
+
+int	is_numeric(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (!(str[i] >= '0' && str[i] <= '9'))
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
+int	check_input(char **av)
+{
+	char	*tmp;
+	int		i;
+
+	i = 1;
+	while (av[i])
+	{
+		tmp = av[i];
+		if (tmp[0] == '+')
+			tmp = &av[i][1];
+		if (!is_numeric(tmp))
+			return (0);
+		i++;
+	}
+	return (1);
+}

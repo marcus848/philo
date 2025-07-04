@@ -31,6 +31,7 @@ int	main(int ac, char **av)
 		return (1);
 	if (start_forks(table) != 0)
 	{
+		printf("[ERROR] Create Forks\n");
 		free_table(table);
 		return (1);
 	}
