@@ -11,11 +11,11 @@
 /* ************************************************************************** */
 
 #include "philo.h"
-#include <semaphore.h>
 
 void	free_table(t_table *t)
 {
 	free(t->philos);
+	free(t->pid);
 	sem_close(t->forks);
 	sem_close(t->write_lock);
 	sem_close(t->death_lock);

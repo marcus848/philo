@@ -11,8 +11,9 @@
 /* ************************************************************************** */
 
 #include "philo.h"
+#include <sys/types.h>
 
-int	create_philo_fork(t_table *t, int id);
+int		create_philo_fork(t_table *t, int id);
 void	kill_all_processes(t_table *t);
 
 void	take_process(t_table *t)
@@ -79,11 +80,17 @@ int	create_philo_fork(t_table *t, int id)
 	return (0);
 }
 
-
 int	start_forks(t_table *t)
 {
+	pid_t	pid;
+
 	t->start_time = get_time_in_ms();
-	if (start_philo_process(t))
+	if (t->n_philos == 1)
+	{
+		pid = single_philo(t);
+		waitpid(-1, &pid, 0);
+	}
+	else if (start_philo_process(t))
 		return (1);
 	return (0);
 }

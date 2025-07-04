@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "philo.h"
-#include <unistd.h>
 
 int	main(int ac, char **av)
 {
@@ -20,6 +19,11 @@ int	main(int ac, char **av)
 	if (ac != 5 && ac != 6)
 	{
 		printf("Use: %s <n_filos> <die> <eat> <sleep> [must_eat]\n", av[0]);
+		return (1);
+	}
+	if (!check_input(av))
+	{
+		printf("Just positive numbers accept\n");
 		return (1);
 	}
 	table = init_table(ac, av);

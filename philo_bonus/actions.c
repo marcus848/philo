@@ -38,14 +38,16 @@ void	eat(t_philo *philo)
 
 void	*routine(void *arg)
 {
-	t_philo	*philo;
+	unsigned long	death_time;
+	t_philo			*philo;
 
 	philo = (t_philo *) arg;
 	if (philo->id % 2 == 0)
 		usleep(1000);
 	while (philo->meals_eaten != 0)
 	{
-		if (get_time_in_ms() - philo->last_meal_time > (unsigned long) philo->table->time_to_die)
+		death_time = (unsigned long) philo->table->time_to_die;
+		if (get_time_in_ms() - philo->last_meal_time > death_time)
 		{
 			print_action(philo, "died");
 			exit (EXIT_FAILURE);

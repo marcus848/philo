@@ -25,51 +25,50 @@
 # include <sys/time.h>
 
 // Structs
-typedef struct s_table t_table;
+typedef struct s_table	t_table;
 
 typedef struct s_philosopher
 {
-	int		id;
-	int		meals_eaten;
-	pthread_t	monitor_thread;
+	int				id;
+	int				meals_eaten;
 	unsigned long	last_meal_time;
-	t_table	*table;
+	t_table			*table;
 }	t_philo;
 
-typedef struct	s_table
+typedef struct s_table
 {
-	pid_t		*pid;
-	int		n_philos;
-	long		time_to_die;
-	long		time_to_eat;
-	long		time_to_sleep;
-	int		times_must_eat;
+	pid_t			*pid;
+	int				n_philos;
+	long			time_to_die;
+	long			time_to_eat;
+	long			time_to_sleep;
+	int				times_must_eat;
 	unsigned long	start_time;
-	t_philo		*philos;
-	sem_t		*forks;
-	sem_t		*write_lock;
-	sem_t		*death_lock;
-	sem_t		*satisfied;
+	t_philo			*philos;
+	sem_t			*forks;
+	sem_t			*write_lock;
+	sem_t			*death_lock;
+	sem_t			*satisfied;
 }	t_table;
 
 t_table	*init_table(int ac, char **av);
 
-
 // lib
-int     	ft_atoi(const char *nptr);
-int     ft_atol(const char *nptr);
-int	ft_strcmp(char *s1, char *s2);
+int		ft_atoi(const char *nptr);
+int		ft_atol(const char *nptr);
+int		ft_strcmp(char *s1, char *s2);
 
 // utils
 long	get_time_in_ms(void);
 void	ft_usleep(long time_in_ms);
-
+int		check_input(char **av);
 
 // free
 void	free_table(t_table *t);
 
 // actions_utils
 void	print_action(t_philo *philo, char *msg);
+int		single_philo(t_table *t);
 
 // actions
 void	*routine(void *arg);
@@ -81,6 +80,6 @@ void	*monitor(void *arg);
 void	*inspector(void *arg);
 
 // threads
-int	start_forks(t_table *t);
+int		start_forks(t_table *t);
 
 #endif

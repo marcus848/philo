@@ -12,10 +12,10 @@
 
 #include "philo.h"
 
-int     ft_atoi(const char *nptr)
+int	ft_atoi(const char *nptr)
 {
-	int     sign;
-	int     nbr;
+	int	sign;
+	int	nbr;
 
 	sign = 1;
 	nbr = 0;
@@ -36,10 +36,10 @@ int     ft_atoi(const char *nptr)
 	return (nbr * sign);
 }
 
-int     ft_atol(const char *nptr)
+int	ft_atol(const char *nptr)
 {
-	int     sign;
-	long     nbr;
+	int		sign;
+	long	nbr;
 
 	sign = 1;
 	nbr = 0;

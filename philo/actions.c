@@ -43,6 +43,7 @@ void	eat(t_philo *philo)
 	print_action(philo, "is eating");
 	pthread_mutex_unlock(&philo->meal_lock);
 	ft_usleep(philo->table->time_to_eat);
+	philo->last_meal_time = get_time_in_ms();
 	philo->meals_eaten++;
 }
 
