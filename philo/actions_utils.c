@@ -19,11 +19,13 @@ void	print_action(t_philo *philo, char *msg)
 	unsigned long	timestamp;
 
 	pthread_mutex_lock(&philo->table->write_lock);
+	pthread_mutex_lock(&philo->table->table_lock);
 	if (!philo->table->is_ended || ft_strcmp(msg, "died") == 0)
 	{
 		timestamp = get_time_in_ms() - philo->table->start_time;
 		printf("%lu Philo %d %s\n", timestamp, philo->id, msg);
 	}
+	pthread_mutex_unlock(&philo->table->table_lock);
 	pthread_mutex_unlock(&philo->table->write_lock);
 }
 

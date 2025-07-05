@@ -11,18 +11,22 @@
 /* ************************************************************************** */
 
 #include "philo.h"
+#include <pthread.h>
 
 void	*monitor_life(void *arg)
 {
-	t_philo *philo = (t_philo *)arg;
 	unsigned long	now;
+	unsigned long	death_time;
+	t_philo			*philo;
 
+	philo = (t_philo *)arg;
+	death_time = (unsigned long)philo->table->time_to_die;
 	while (1)
 	{
-		usleep(500); // Checagem precisa sem sobrecarregar
+		usleep(500);
 		sem_wait(philo->table->death_lock);
 		now = get_time_in_ms();
-		if (now - philo->last_meal_time > (unsigned long)philo->table->time_to_die)
+		if (now - philo->last_meal_time > death_time)
 		{
 			print_action(philo, "died");
 			sem_post(philo->table->death_lock);
@@ -59,7 +63,7 @@ void	eat(t_philo *philo)
 
 void	*routine(void *arg)
 {
-	t_philo			*philo;
+	t_philo		*philo;
 	pthread_t	monitor;
 
 	philo = (t_philo *) arg;
@@ -75,6 +79,10 @@ void	*routine(void *arg)
 		ft_usleep(philo->table->time_to_sleep);
 		print_action(philo, "is thinking");
 	}
+	pthread_join(monitor, NULL);
+	sem_close(philo->table->forks);
+	sem_close(philo->table->write_lock);
+	sem_close(philo->table->death_lock);
 	exit (1);
 	return (NULL);
 }

@@ -19,5 +19,8 @@ void	free_table(t_table *t)
 	sem_close(t->forks);
 	sem_close(t->write_lock);
 	sem_close(t->death_lock);
+	sem_unlink("/forks");
+	sem_unlink("/write_lock");
+	sem_unlink("/death_lock");
 	free(t);
 }

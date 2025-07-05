@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "philo.h"
+#include <pthread.h>
 
 int	all_full(t_table *t)
 {
@@ -21,8 +22,10 @@ int	all_full(t_table *t)
 	count = 0;
 	while (i < t->n_philos)
 	{
+		pthread_mutex_lock(&t->philos[i].meal_lock);
 		if (t->philos[i].meals_eaten >= t->times_must_eat)
 			count++;
+		pthread_mutex_unlock(&t->philos[i].meal_lock);
 		i++;
 	}
 	if (count == t->n_philos)

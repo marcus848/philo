@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "philo.h"
+#include <semaphore.h>
 #include <sys/types.h>
 
 int		create_philo_fork(t_table *t, int id);
