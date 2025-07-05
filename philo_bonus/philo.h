@@ -48,7 +48,6 @@ typedef struct s_table
 	sem_t			*forks;
 	sem_t			*write_lock;
 	sem_t			*death_lock;
-	sem_t			*satisfied;
 }	t_table;
 
 t_table	*init_table(int ac, char **av);
