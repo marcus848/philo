@@ -45,10 +45,7 @@ int	alloc_table(t_table *t)
                return (1);
        t->pid = malloc(sizeof(pid_t) * t->n_philos);
        if (!t->pid)
-       {
-               free(t->philos);
                return (1);
-       }
        return (0);
 }
 

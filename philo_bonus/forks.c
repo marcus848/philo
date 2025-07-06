@@ -84,13 +84,12 @@ int	create_philo_fork(t_table *t, int id)
 int	start_forks(t_table *t)
 {
 	pid_t	pid;
-	int	status;
 
 	t->start_time = get_time_in_ms();
 	if (t->n_philos == 1)
 	{
 		pid = single_philo(t);
-		waitpid(pid, &status, 0);
+		waitpid(-1, &pid, 0);
 	}
 	else if (start_philo_process(t))
 		return (1);
