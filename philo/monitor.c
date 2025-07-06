@@ -52,7 +52,7 @@ void	*monitor(void *arg)
 		}
 		pthread_mutex_unlock(&t->table_lock);
 		i = 0;
-		while (i < t->n_philos && !t->is_ended)
+		while (i < t->n_philos)
 		{
 			if (philo_died(&t->philos[i]))
 				return (NULL);
