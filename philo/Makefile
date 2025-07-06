@@ -3,7 +3,7 @@ NAME = philo
 
 # Compiler and flags
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g -Iinclude
+CFLAGS = -Wall -Wextra -Werror -g 
 
 # Directories
 SRC_DIR = philo
@@ -28,6 +28,9 @@ all: $(NAME)
 
 $(NAME): $(OBJS) 
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) 
+
+sanitize: $(OBJS)
+	$(CC) $(CFLAGS) -fsanitize=thread -pthread -o $(NAME)S $(OBJS) 
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(@D)
