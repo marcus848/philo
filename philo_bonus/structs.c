@@ -40,13 +40,13 @@ void	set_args(t_table *t, int ac, char **av)
 
 int	alloc_table(t_table *t)
 {
-       t->philos = malloc(sizeof(t_philo) * t->n_philos);
-       if (!t->philos)
-               return (1);
-       t->pid = malloc(sizeof(pid_t) * t->n_philos);
-       if (!t->pid)
-               return (1);
-       return (0);
+	t->philos = malloc(sizeof(t_philo) * t->n_philos);
+	if (!t->philos)
+		return (1);
+	t->pid = (pid_t *) malloc(sizeof(pid_t) * t->n_philos);
+	if (!t->philos)
+		return (1);
+	return (0);
 }
 
 int	init_philos(t_table *t)
